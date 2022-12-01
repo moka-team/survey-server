@@ -3,11 +3,13 @@ package site.mokaform.surveyserver.repository.enums;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
+import site.mokaform.surveyserver.common.exception.ApiException;
+import site.mokaform.surveyserver.common.exception.errorcode.SurveyErrorCode;
 
 import java.util.Arrays;
 
-import static site.mokaform.surveyserver.domain.answer.QAnswer.answer;
 import static site.mokaform.surveyserver.domain.QSurvey.survey;
+import static site.mokaform.surveyserver.domain.answer.QAnswer.answer;
 
 public enum SurveySortType {
 
@@ -30,10 +32,7 @@ public enum SurveySortType {
         return Arrays.stream(SurveySortType.values())
                 .filter(sortType -> sortType.property.equals(property))
                 .findAny()
-                .get();
-
-        // TODO: exception 추가
-//                .orElseThrow(() ->
-//                        new ApiException(SurveyErrorCode.INVALID_SORT_TYPE));
+                .orElseThrow(() ->
+                        new ApiException(SurveyErrorCode.INVALID_SORT_TYPE));
     }
 }
