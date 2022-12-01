@@ -1,5 +1,10 @@
 package site.mokaform.surveyserver.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import site.mokaform.surveyserver.common.exception.ApiException;
 import site.mokaform.surveyserver.common.exception.errorcode.CommonErrorCode;
 import site.mokaform.surveyserver.common.exception.errorcode.ErrorCode;
@@ -19,11 +24,6 @@ import site.mokaform.surveyserver.repository.survey.MultiChoiceQuestionRepositor
 import site.mokaform.surveyserver.repository.survey.QuestionRepository;
 import site.mokaform.surveyserver.repository.survey.SurveyCategoryRepository;
 import site.mokaform.surveyserver.repository.survey.SurveyRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -95,14 +95,14 @@ public class SurveyService {
     }
 
     @Transactional(readOnly = true)
-    public SurveyDetailsResponse getSurveyDetailsById(Long surveyId, String userEmail) {
+    public SurveyDetailsResponse getSurveyDetailsById(Long surveyId) {
         Survey survey = getSurveyById(surveyId);
 
         return getSurveyDetails(survey);
     }
 
     @Transactional(readOnly = true)
-    public SurveyDetailsResponse getSurveyDetailsBySharingKey(String sharingKey, String userEmail) {
+    public SurveyDetailsResponse getSurveyDetailsBySharingKey(String sharingKey) {
         Survey survey = getSurveyBySharingKey(sharingKey);
 
         return getSurveyDetails(survey);
