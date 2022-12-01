@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: qwer1234!
-    url: jdbc:mysql://localhost:3301/mokaform-survey
+    url: jdbc:mysql://localhost:3301/mokaform_survey
   jpa:
     show-sql: true
     properties:
