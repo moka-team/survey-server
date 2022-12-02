@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mokaform-survey
+    name: survey-service
   jpa:
     open-in-view: false
     properties:
@@ -22,3 +22,13 @@ spring:
     include:
       - springdoc
       - local
+
+# TODO: eureka server 만들고 아래 설정 다시 확인하기
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
